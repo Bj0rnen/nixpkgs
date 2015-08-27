@@ -658,8 +658,7 @@ let
   };
 
   async = buildPythonPackage rec {
-    name = "async-0.6.1";
-    disabled = isPy3k;
+    name = "async-0.6.2";
     meta.maintainers = with maintainers; [ mornfall ];
 
     buildInputs = with self; [ pkgs.zlib ];
@@ -667,7 +666,7 @@ let
 
     src = pkgs.fetchurl {
       url = "https://pypi.python.org/packages/source/a/async/${name}.tar.gz";
-      sha256 = "1lfmjm8apy9qpnpbq8g641fd01qxh9jlya5g2d6z60vf8p04rla1";
+      md5 = "9b06b5997de2154f3bc0273f80bcef6b";
     };
   };
 
@@ -3611,25 +3610,25 @@ let
   };
 
   gitdb = buildPythonPackage rec {
-    name = "gitdb-0.5.4";
+    name = "gitdb-0.6.4";
     meta.maintainers = with maintainers; [ mornfall ];
     doCheck = false;
 
     src = pkgs.fetchurl {
       url = "https://pypi.python.org/packages/source/g/gitdb/${name}.tar.gz";
-      sha256 = "10rpmmlln59aq44cd5vkb77hslak5pa1rbmigg6ski5f1nn2spfy";
+      md5 = "44e4366b8bdfd306b075c3a52c96ae1a";
     };
 
     propagatedBuildInputs = with self; [ smmap async ];
   };
 
   GitPython = buildPythonPackage rec {
-    name = "GitPython-0.3.2";
+    name = "GitPython-1.0.1";
     meta.maintainers = with maintainers; [ mornfall ];
 
     src = pkgs.fetchurl {
-      url = "https://pypi.python.org/packages/source/G/GitPython/GitPython-0.3.2.RC1.tar.gz";
-      sha256 = "1q4lc2ps12l517mmrxc8iq6gxyhj6d77bnk1p7mxf38d99l8crzx";
+      url = "https://pypi.python.org/packages/source/G/GitPython/${name}.tar.gz";
+      md5 = "4659644b42c41e5e5170c0cd83ed6422";
     };
 
     buildInputs = with self; [ nose ];
@@ -10563,6 +10562,17 @@ let
     };
   };
 
+  PyGithub = pythonPackages.buildPythonPackage rec {
+    name = "PyGithub-1.25.2";
+
+    doCheck = false;
+
+    src = pkgs.fetchurl {
+      url = "https://pypi.python.org/packages/source/P/PyGithub/${name}.tar.gz";
+      md5 = "18bb9d3fc1cebff8ab69eb57e85179a5";
+    };
+  };
+
   pyglet = buildPythonPackage rec {
     name = "pyglet-1.1.4";
 
@@ -13918,14 +13928,14 @@ let
   };
 
   smmap = buildPythonPackage rec {
-    name = "smmap-0.8.2";
-    disabled = isPy3k || isPyPy;  # next release will have py3k/pypy support
-    meta.maintainers = with maintainers; [ mornfall ];
+    name = "smmap-0.9.0";
 
     src = pkgs.fetchurl {
       url = "https://pypi.python.org/packages/source/s/smmap/${name}.tar.gz";
-      sha256 = "0vrdgr6npmajrv658fv8bij7zgm5jmz2yxkbv8kmbv25q1f9b8ny";
+      md5 = "d7932d5ace206bf4ae15198cf36fb6ab";
     };
+
+    propagatedBuildInputs = with self; [ nosexcover ];
   };
 
   trac = buildPythonPackage {
@@ -16228,13 +16238,14 @@ let
 
   Logbook = buildPythonPackage rec {
     name = "Logbook-${version}";
-    version = "0.4.2";
+    version = "0.10.1";
 
     src = pkgs.fetchurl {
       url = "https://pypi.python.org/packages/source/L/Logbook/${name}.tar.gz";
-      # md5 = "143cb15af4c4a784ca785a1546ad1b93";
-      sha256 = "1g2pnhxh7m64qsrs0ifwcmpfk7gqjvrawd8z66i001rsdnq778v0";
+      md5 = "e96a35cb2259f4c9fa35fd9cb7b31f99";
     };
+
+    propagatedBuildInputs = with self; [ six ];
 
     meta = {
       homepage = http://pythonhosted.org/Logbook/;
